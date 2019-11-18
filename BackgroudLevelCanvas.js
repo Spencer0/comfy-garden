@@ -28,5 +28,6 @@ class BackgroundLevelCanvas {
         }
         this.ctx.strokeStyle = "grey";
         this.ctx.stroke();
+                    
     }
 }

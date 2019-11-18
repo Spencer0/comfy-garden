@@ -1,36 +1,20 @@
 
-
-//Dev log - 11/17/2019
-
-//My game should have three things.
-//A state.
-//A screen.
-//A user input watcher thing.
-
-
-
-//The screen should listen for the state to change.
-//It should redraw then, or every 60s check state and draw yourself
-//The user inputer watches for various inputs, and relays that to the state
-
-//Right now my user inputter 
-
-
-
-
 function main(){
 
     //Set up state (Just contained in main for now)
    
 
     var GardenState = {
+        wormPopulation: 0,
         cells: [],
+        animals: [],
         tools : ["shovel", "seed"],
         currentTool: "shovel",
     }
 
+
     //Determine Global Variables 
-    const gridSize = 10;
+    const gridSize = 20;
     const height = 600;
     const width = 800;
 
@@ -63,6 +47,19 @@ function main(){
         }
         cm.updateCanvas(GardenState)
     })
+    canvas.addEventListener('keydown', function(event) {
+        if(event.key == 's'){
+            console.log("s  pressed")
+            console.log(GardenState)
+            GardenState = gm.handleGameTick(GardenState)
+        }
+        cm.updateCanvas(GardenState)
+    })
+
+    setInterval(function(){ 
+        GardenState = gm.handleGameTick(GardenState);
+        cm.updateCanvas(GardenState);
+     }, 1000);
 
     
 

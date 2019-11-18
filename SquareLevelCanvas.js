@@ -8,6 +8,10 @@ class SquareLevelCanvas {
       this.grassImg = document.getElementById('grass');
       this.dirtImg = document.getElementById('dirt');
       this.waterImg = document.getElementById('water');
+      this.wormImg = document.getElementById('worm');
+      this.mouseImg = document.getElementById('mouse');
+      this.fishImg = document.getElementById('fish');
+      this.snakeImg = document.getElementById('snake');
       this.prep()
     }
 
@@ -26,6 +30,7 @@ class SquareLevelCanvas {
 
     setUpGrid(){
         this.cells = [];
+        this.animals = []
         this.dx = this.width / this.gridSize;
         this.dy = this.height / this.gridSize;
         var x = 0;
@@ -35,10 +40,12 @@ class SquareLevelCanvas {
                 if(Math.random() >= .2){
                     this.ctx.drawImage(this.dirtImg, x, y, this.dx, this.dy);
                     this.cells.push("dirt")
+                    this.animals.push("none")
                 }
                 else{
                     this.ctx.drawImage(this.grassImg, x, y, this.dx, this.dy);
                     this.cells.push('grass');
+                    this.animals.push("none")
                 }
                 x += this.dx;
             }
@@ -50,6 +57,7 @@ class SquareLevelCanvas {
 
     updateState(state){
         this.cells = state.cells;
+        this.animals = state.animals
         this.redraw();
     }
 
@@ -68,13 +76,24 @@ class SquareLevelCanvas {
             for(var j = 0; j <= this.gridSize - 1;  j++){
                 if(this.cells[count]=="dirt"){
                     this.ctx.drawImage(this.dirtImg, x, y, this.dx, this.dy);
-                    
+                    if(this.animals[count] == "worm"){
+                        this.ctx.drawImage(this.wormImg, x, y, this.dx, this.dy);
+                    }
                 }
                 else if(this.cells[count]=="grass"){
                     this.ctx.drawImage(this.grassImg, x, y, this.dx, this.dy);
+                    if(this.animals[count] == "mouse"){
+                        this.ctx.drawImage(this.mouseImg, x, y, this.dx, this.dy);
+                    }
+                    if(this.animals[count] == "snake"){
+                        this.ctx.drawImage(this.snakeImg, x, y, this.dx, this.dy);
+                    }
                 }
                 else if(this.cells[count]=="water"){
                     this.ctx.drawImage(this.waterImg, x, y, this.dx, this.dy);
+                    if(this.animals[count] == "fish"){
+                        this.ctx.drawImage(this.fishImg, x, y, this.dx, this.dy);
+                    }
                 }
                 count++;
                 x += this.dx;

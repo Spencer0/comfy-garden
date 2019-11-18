@@ -1,0 +1,17 @@
+
+Dev log - 11/17/2019
+My game should have three things.
+A state.
+A screen.
+A user input watcher thing.
+
+
+
+The screen should listen for the state to change.
+It should redraw then, or every 60s check state and draw yourself
+The user inputer watches for various inputs, and relays that to the state
+
+Next Updates 
+The ground and tool system is happening and is encapsulated. 
+I want to move into "luring" animals to be in your "garden"
+How can i make animals cute? 
