@@ -1,0 +1,33 @@
+#background{ 
+    z-index: 5;
+    border: 15px solid rgb(76, 95, 25);
+
+}
+#squares{
+    padding: 15px;
+	height: 600px;
+    width: 800px;
+}
+
+canvas{
+    height: 600px;
+    width: 800px;
+    position: absolute;
+}
+
+button{
+    margin-top: 650px;
+    margin-left: 40%;
+}
+
+
+#Page{
+    margin: auto;
+    width: 60%;
+    cursor: url("http://icons.iconarchive.com/icons/chrisl21/minecraft/32/Diamond-Sword-icon.png") 4 12, progress;
+}
+
+.green{
+    width: 200px;
+    background-color: #92f392;
+}
