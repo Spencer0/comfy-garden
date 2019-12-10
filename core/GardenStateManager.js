@@ -11,8 +11,8 @@ class GardenStateManager{
         let rect = this.canvas.getBoundingClientRect()
         let x = event.clientX - rect.left
         let y = event.clientY - rect.top
-        let px = Math.floor((x - 15) / (width / this.gridSize));
-        let py = Math.floor((y - 15) / (height / this.gridSize)) * this.gridSize;
+        let px = Math.floor((x ) / (width / this.gridSize));
+        let py = Math.floor((y ) / (height / this.gridSize)) * this.gridSize;
         console.log("Guessing ", px , " plus ", py)
 
         //Update that square 
@@ -46,7 +46,9 @@ class GardenStateManager{
         //Search the ground for nodes (defined as squares of one type)
 
         for(var i = 0; i < this.gridSize**2; i++){
-            if(i >= this.gridSize + 2 ){
+            if(i >= this.gridSize + 1 ){
+                var myself = state.cells[i]
+                var myAnimal = state.animals[i]
                 var north = state.cells[i - this.gridSize];
                 var animalNorth = state.animals[i - this.gridSize];
                 var northwest = state.cells[i - this.gridSize - 1];
@@ -60,7 +62,7 @@ class GardenStateManager{
             }else{
                 continue 
             }
-            if(i < this.gridSize**2 - (this.gridSize + 2)){
+            if(i < this.gridSize**2 - (this.gridSize +1)){
                 var south = state.cells[i + this.gridSize];
                 var animalSouth = state.animals[i + this.gridSize];
                 var southwest = state.cells[i + this.gridSize - 1];
@@ -70,25 +72,31 @@ class GardenStateManager{
             }else{
                 continue
             }
-            let compass = [north, northeast, northwest, south, southeast, southwest, east , west]
-            let animalCompass = [animalNorth, animalNortheast, animalNorthwest, animalSouth, animalSoutheast, animalSouthwest, animalEast , animalWest]
+            let compass = [north, northeast, northwest, south, southeast, southwest, east , west, myself]
+            let animalCompass = [animalNorth, animalNortheast, animalNorthwest, animalSouth, animalSoutheast, animalSouthwest, animalEast , animalWest, myAnimal]
             if(compass.every( (val, i, arr) => val === arr[0] )){
                 if(north == "dirt"){
-                    if(Math.random() >= .99 && state.wormPopulation < this.gridSize){
-                        state.wormPopulation++;
-                        state.animals[i] = "worm";
+                    if(Math.random() >= .99){
+                        if(state.animals[i] !== "worm"){
+                            state.animals[i] = "worm";
+                            state.population.total += 1
+                        }
                     }
                 }
                 if(north == "grass"){
                     if(Math.random() >= .90){
-                        if(state.animals[i] !== "snake"){
+                        if(state.animals[i] !== "snake" && state.animals[i] !== "mouse"){
                             state.animals[i] = "mouse";
+                            state.population.total += 1
                         }
                     }
                 }
                 if(north == "water"){
                     if(Math.random() >= .80){
-                        state.animals[i] = "fish";
+                        if(state.animals[i] !== "fish"){
+                            state.animals[i] = "fish";
+                            state.population.total += 1
+                        }
                     }
                 }
             }
@@ -99,6 +107,7 @@ class GardenStateManager{
                 neigbors.map(function(elem){
                     state.animals[elem] = "x";
                 })
+                state.population.total -= 7
             }
         }
         return state

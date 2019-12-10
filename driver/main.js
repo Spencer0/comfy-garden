@@ -5,7 +5,13 @@ function main(){
    
 
     var GardenState = {
-        wormPopulation: 0,
+        population: {
+            total: 0,
+            worms: 0,
+            mice: 0,
+            snakes: 0,
+            fish: 0,
+        },
         cells: [],
         animals: [],
         tools : ["shovel", "seed"],
@@ -14,7 +20,7 @@ function main(){
 
 
     //Determine Global Variables 
-    const gridSize = 20;
+    const gridSize = 100;
     const height = 600;
     const width = 800;
 

@@ -26,8 +26,8 @@ class BackgroundLevelCanvas {
 					this.ctx.moveTo(0, 0.5 + x);
 					this.ctx.lineTo(this.width, 0.5 + x);
         }
-        this.ctx.strokeStyle = "grey";
-        this.ctx.stroke();
+        //this.ctx.strokeStyle = "grey";
+        //this.ctx.stroke();
                     
     }
 }

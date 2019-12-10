@@ -1,0 +1,19 @@
+#background{ 
+    z-index: 5;
+
+}
+canvas{
+    height: 600px;
+    width: 800px;
+    position: absolute;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
+}
+
+#gameLayer{
+
+}
+#menu{
+    padding-left: 825px;
+}
+  

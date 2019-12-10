@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>a garden</title>
+  <meta content="zen garden">
+  <link rel="stylesheet" href="../styles/styles.css">
+
+</head>
+<body onload="main();">
+  
+  <img id = 'grass' src='../assets/grass.PNG' style="display: none"></img>
+  <img id = 'dirt' src='../assets/dirt.PNG' style="display: none"></img>
+  <img id = 'water' src='../assets/water.PNG' style="display: none"></img>
+  <img id = 'worm' src='../assets/worm.png' style="display: none"></img>
+  <img id = 'mouse' src='../assets/mouse.png' style="display: none"></img>
+  <img id = 'fish' src='../assets/fish.png' style="display: none"></img>
+  <img id = 'snake' src='../assets/snake.png' style="display: none"></img>
+
+  <div id = "gameLayer">
+       <canvas tabindex='1' id="background"></canvas>
+       <canvas id="squares"></canvas>
+       <canvas id="animals"></canvas>
+  </div>
+  <div id = "menu">
+    <form action="reload()">
+      <p id = "stats">
+            Population Count: 0 <br>
+            Current Tool: Shovel <br>
+
+            Press space to change tools out!
+      </p>
+      <br><br>
+      Grid Size<select>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      <button> reload </button>
+      <br/>
+    </form>
+  </div>
+  <script src="../core/ResolutionFix.js"></script>
+  <script src="../canvaslayers/BackgroudLevelCanvas.js"></script>
+  <script src="../canvaslayers/SquareLevelCanvas.js"></script>
+  <script src="../canvaslayers/AnimalLevelCanvas.js"></script>
+  <script src="../core/GameCanvasManager.js"></script>
+  <script src="../core/GardenStateManager.js"></script>
+  <script src="../driver/main.js"></script>
+</body>
+</html>
